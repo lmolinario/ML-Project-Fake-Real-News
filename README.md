@@ -23,4 +23,4 @@ This project is developed for the UNICA.IT University ML exams. Starting from th
   git clone https://github.com/lmolinario/ML-Project-Fake-Real-News.git
   ```
 
-- Run the file `startpoint.py` to start the program
+- Run the file `entrypoint.py` to start the program
