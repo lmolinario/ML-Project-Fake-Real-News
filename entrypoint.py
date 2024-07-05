@@ -2,6 +2,9 @@
 from util import import_db
 from util.create_db_news import create_db_news as crdb
 
+# NLP libraries
+from util.nlp import word_tokenize,preprocessing_text
+
 # Libraries to manage datasets
 import os
 import pandas as pd
@@ -52,6 +55,10 @@ def main():
 
     print("News Dataset Preview:")
     print(ds_news.head())
+
+    ds_news['filtered'] = ds_news['filtered_string'].apply(lambda x: word_tokenize(x)) # Tokenization
+    ds_news['filtered_unique'] = ds_news['filtered'].apply(lambda x: list(set(x))) # Removing Duplicates
+
 
 # Execute the main function
 if __name__ == "__main__":
