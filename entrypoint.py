@@ -3,7 +3,7 @@ from util import import_db
 from util.create_db_news import create_db_news as crdb
 
 # NLP libraries
-from util.nlp import word_tokenize,preprocessing_text
+from util.nlp import word_tokenize, preprocessing_text
 
 # Libraries to manage datasets
 import os
