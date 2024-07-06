@@ -1,9 +1,8 @@
 # Import necessary modules
 from util import import_db
 from util.create_db_news import create_db_news as crdb
-
-# NLP libraries
-from util.nlp import word_tokenize, preprocessing_text
+from util.nlp import word_tokenize, preprocessing_text #NLP modules
+import util.db_analysis as dba
 
 # Libraries to manage datasets
 import os
@@ -59,6 +58,19 @@ def main():
     ds_news['filtered'] = ds_news['filtered_string'].apply(lambda x: word_tokenize(x)) # Tokenization
     ds_news['filtered_unique'] = ds_news['filtered'].apply(lambda x: list(set(x))) # Removing Duplicates
 
+    ds_news.head()
+
+    #Statistical analysis
+    total_words = dba.get_unique_word_count(ds_news['filtered']) #Count total unique words across all documents
+    print("Total unique words", total_words)
+
+    maxlen, imax, minlen, imin = dba.get_max_min_word_count(ds_news['filtered']) #Document with the highest and lowest number of words
+    print(f"Document with max words (length {maxlen}): {imax}")
+    print(f"Document with min words (length {minlen}): {imin}")
+
+    maxdim, imaxu, mindim, iminu = dba.get_max_min_unique_word_count(ds_news['filtered_unique']) #Document with highest and lowest number of unique words
+    print(f"Document with max unique words (length {maxdim}): {imaxu}")
+    print(f"Document with min unique words (length {mindim}): {iminu}")
 
 # Execute the main function
 if __name__ == "__main__":
