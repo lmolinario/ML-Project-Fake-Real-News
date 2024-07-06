@@ -56,20 +56,15 @@ def main():
     print("News Dataset Preview:")
     print(ds_news.head())
 
-    ds_news['filtered'] = ds_news['filtered_string'].apply(lambda x: word_tokenize(x)) # Tokenization
-    ds_news['filtered_unique'] = ds_news['filtered'].apply(lambda x: list(set(x))) # Removing Duplicates
-
-    ds_news.head()
-
     #Statistical analysis
-    total_words = dba.get_unique_word_count(ds_news['filtered']) #Count total unique words across all documents
+    total_words = dba.get_unique_word_count(ds_news.filtered) #Count total unique words across all documents
     print("Total unique words", total_words)
 
-    maxlen, imax, minlen, imin = dba.get_max_min_word_count(ds_news['filtered']) #Document with the highest and lowest number of words
+    maxlen, imax, minlen, imin = dba.get_max_min_word_count(ds_news.filtered) #Document with the highest and lowest number of words
     print(f"Document with max words (length {maxlen}): {imax}")
     print(f"Document with min words (length {minlen}): {imin}")
 
-    maxdim, imaxu, mindim, iminu = dba.get_max_min_unique_word_count(ds_news['filtered_unique']) #Document with highest and lowest number of unique words
+    maxdim, imaxu, mindim, iminu = dba.get_max_min_unique_word_count(ds_news.filtered_unique) #Document with highest and lowest number of unique words
     print(f"Document with max unique words (length {maxdim}): {imaxu}")
     print(f"Document with min unique words (length {mindim}): {iminu}")
 

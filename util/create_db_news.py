@@ -35,9 +35,6 @@ def create_db_news(ds_true, ds_fake):
     # Add a column with a list of unique words for each row
     ds_news['filtered_unique'] = ds_news['filtered'].apply(lambda x: list(set(x)))
 
-    # Drop columns 'filtered' and 'filtered_unique' before saving as CSV
-    ds_news.drop(columns=['filtered', 'filtered_unique'], inplace=True)
-
     # Save the preprocessed dataset to a CSV file
     try:
         ds_news.to_csv("./News.csv", index=False)
