@@ -1,6 +1,7 @@
 # Import necessary modules
 from util import import_db
 from util.create_db_news import create_db_news as crdb
+
 from util.nlp import word_tokenize, preprocessing_text #NLP modules
 import util.db_analysis as dba
 
