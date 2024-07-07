@@ -52,7 +52,7 @@ def download_and_extract_dataset(api, dataset, download_path, extract_path):
     print("Dataset unzipped successfully.")
 
 
-def main():
+def import_dataset():
     current_dir = os.getcwd()
     kaggle_json_path = os.path.join(current_dir, 'util', 'kaggle.json')
     train_dir = os.path.join(current_dir, 'train')
@@ -72,7 +72,3 @@ def main():
         print(f"Bad zip file: {e}")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-
-
-main()
