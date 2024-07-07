@@ -1,8 +1,11 @@
 # Import necessary modules
-from util import import_db
+from util import import_dataset
 from util.create_db_news import create_db_news as crdb
+import platform
+import getpass
 
 from util.nlp import word_tokenize, preprocessing_text #NLP modules
+from util.import_dataset import  import_dataset
 import util.db_analysis as dba
 
 # Libraries to manage datasets
@@ -11,16 +14,22 @@ import pandas as pd
 
 def main():
     # Try to read the datasets using UNIX-like path
-    try:
-        ds_true = pd.read_csv("./train/True.csv")
-        ds_fake = pd.read_csv("./train/Fake.csv")
-    except:  # If failed, try Windows path
+    system = platform.system()
+    if system == 'Windows':
         current_dir = os.getcwd()
         true_file_path = os.path.join(current_dir, 'train', 'True.csv')
         fake_file_path = os.path.join(current_dir, 'train', 'Fake.csv')
+        if not (os.path.isfile(true_file_path) and os.path.isfile(fake_file_path)):
+            import_dataset()
+    else:
+        true_file_path = "./train/True.csv"
+        fake_file_path = "./train/Fake.csv"
+        if not (os.path.isfile(true_file_path) and os.path.isfile(fake_file_path)):
+            import_dataset()
 
-        ds_true = pd.read_csv(true_file_path)
-        ds_fake = pd.read_csv(fake_file_path)
+    ds_true = pd.read_csv(true_file_path)
+    ds_fake = pd.read_csv(fake_file_path)
+
 
     # Add a label column to the datasets
     ds_true['label'] = 0  # 0 = true news
