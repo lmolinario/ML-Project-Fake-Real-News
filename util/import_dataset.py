@@ -54,7 +54,7 @@ def download_and_extract_dataset(api, dataset, download_path, extract_path):
 
 def import_dataset():
     current_dir = os.getcwd()
-    kaggle_json_path = os.path.join(current_dir, 'util', 'kaggle.json')
+    kaggle_json_path = os.path.join(current_dir, 'kaggle_credential', 'kaggle.json')
     train_dir = os.path.join(current_dir, 'train')
     dataset = 'clmentbisaillon/fake-and-real-news-dataset'
 
