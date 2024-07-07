@@ -1,16 +1,13 @@
 # Import necessary modules
 from util import import_dataset
 from util.create_db_news import create_db_news as crdb
-import platform
-import getpass
-
-from util.nlp import word_tokenize, preprocessing_text #NLP modules
-from util.import_dataset import  import_dataset
+from util.import_dataset import import_dataset
 import util.db_analysis as dba
 
 # Libraries to manage datasets
 import os
 import pandas as pd
+import platform
 
 def main():
     # Try to read the datasets using UNIX-like path
