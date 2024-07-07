@@ -24,7 +24,11 @@ Starting from the datasets provided by "Kaggle.com" we have structured an algori
 
 - Download the ZIP code or clone the repository with
   ```bash
-  git clone https://github.com/lmolinario/ML-Project-Fake-Real-News.git
+  git clone https://github.com/lmolinario/MLproject.git
   ```
+- Install the requirements with
 
+  ```bash
+  pip3 install -r requirements.txt
+  ```
 - Run the file `entrypoint.py` to start the program
