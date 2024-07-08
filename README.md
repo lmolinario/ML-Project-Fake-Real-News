@@ -12,7 +12,7 @@ Starting from the datasets provided by "Kaggle.com" we have structured an algori
 > **Authors**: Michela Lecca - Marco Mulas- Lello Molinario
 
 > **Supervisor**:Prof. Battista Biggio 
-
+***
 ***
 # Contents
 1. [Installation](#installation)
