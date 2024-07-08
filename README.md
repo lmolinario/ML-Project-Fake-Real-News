@@ -16,7 +16,11 @@ Starting from the datasets provided by "Kaggle.com" we have structured an algori
 ***
 # Contents
 1. [Installation](#installation)
+2. [Project Goal](#project-goal)
+3. [Solution Design](#solution-design)
+4. [Analysis and conclusion](#Analysis-and-conclusion)
 
+***
 ***
 
 ## Installation
