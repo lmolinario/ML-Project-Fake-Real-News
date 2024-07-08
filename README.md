@@ -1,9 +1,8 @@
+![Fake_Real_News_ML](../ML-Project-Fake-Real-News/doc/fake_real_news_AI.jpeg "Fake and real news dataset | Kaggle")
 # Fake and real news dataset | Kaggle
-
 This project is developed for the UNICA.IT University ML exams. 
 
 Starting from the datasets provided by "Kaggle.com" we have structured an algorithm capable of distinguishing fake news from real news.
-
 
 
 > **Master's degree in Computer Engineering, Cybersecurity and Artificial Intelligence - University of Cagliari**
