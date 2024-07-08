@@ -14,20 +14,31 @@ Starting from the datasets provided by "Kaggle.com" we have structured an algori
 > **Supervisor**:Prof. Battista Biggio 
 
 ***
-# Table of Contents
+# Contents
 1. [Installation](#installation)
 
 ***
 
 ## Installation
 
-- Download the ZIP code or clone the repository with
+- Download the ZIP code or clone the repository with:
   ```bash
   git clone https://github.com/lmolinario/MLproject.git
   ```
-- Install the requirements with
+- Install the requirements with:
 
   ```bash
   pip3 install -r requirements.txt
   ```
-- Run the file `entrypoint.py` to start the program
+- Run the file `entrypoint.py` to start the program.
+
+## Project goal
+The proposed project aims to deepen knowledge of the key concepts and potential of machine learning algorithms. 
+Through binary classification the elements of a dataset are divided into two groups, managing to predict which group each element belongs to.
+
+## Solution Design
+to implement...
+
+
+## Analysis and conclusion
+to implement...
