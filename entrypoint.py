@@ -33,11 +33,9 @@ def main():
     ds_true['label'] = 0  # 0 = true news
     ds_fake['label'] = 1  # 1 = fake news
 
-    print("True News Dataset Preview:")
-    print(ds_true.head())
+    print(f"True News Dataset Preview:\n{ds_true.head()}")
 
-    print("Fake News Dataset Preview:")
-    print(ds_fake.head())
+    print(f"\nFake News Dataset Preview:\n{ds_fake.head()}")
 
     # Flag to indicate whether to create the news database
     create_db_news = False
@@ -46,12 +44,12 @@ def main():
     try:
         try:
             ds_news = pd.read_csv("News.csv")
-            print("Preprocessed dataset loaded successfully!")
+            print("\nPreprocessed dataset loaded successfully!")
         except:
             current_dir = os.getcwd()
             news_file_path = os.path.join(current_dir, 'News.csv')
             ds_news = pd.read_csv(news_file_path)
-            print("Preprocessed dataset loaded successfully!")
+            print("\nPreprocessed dataset loaded successfully!")
     except:
         print("Preprocessed dataset not found. Creating it...")
         create_db_news = True
@@ -60,12 +58,11 @@ def main():
     if create_db_news:
         ds_news = crdb(ds_true, ds_fake)
 
-    print("News Dataset Preview:")
-    print(ds_news.head())
+    print(f"\nNews Dataset Preview:\n{ds_news.head()}")
 
     #Statistical analysis
     total_words = dba.get_unique_word_count(ds_news.filtered) #Count total unique words across all documents
-    print("Total unique words", total_words)
+    print(f"\nTotal unique words: {total_words}")
 
     maxlen, imax, minlen, imin = dba.get_max_min_word_count(ds_news.filtered) #Document with the highest and lowest number of words
     print(f"Document with max words (length {maxlen}): {imax}")
