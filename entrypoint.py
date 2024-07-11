@@ -4,6 +4,7 @@ from util.create_db_news import create_db_news as crdb
 from util.import_dataset import import_dataset
 import util.db_analysis as dba
 from util.NewsPlot import plot_news_data
+import util.text_representation as tr
 
 # Libraries to manage datasets
 import os
@@ -81,6 +82,20 @@ def main():
     # Plot the dataset information
     plot_news_data(ds_true, ds_fake, ds_news)
 
+    # Initialize the data representations and classifiers
+    data_representations = [
+        tr.TokenizerRepresentation(),
+        tr.TextVectorizationRepresentation(),
+        tr.TFIDFRepresentation()
+        ]
+
+    data_representation_names = ['Tokenizer', 'Vectorizer', 'TFIDF']
+
+    classifiers = [
+        tr.NaiveBayesClassifierStrategy()
+    ]
+
+    classifier_names = ['NaiveBayes']
 
 # Execute the main function
 if __name__ == "__main__":
