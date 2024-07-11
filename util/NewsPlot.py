@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
+import os
+
+SAVE_PATH='plots/database_analysis'
+
 
 def plot_news_data(ds_true, ds_fake, ds_news):
     """
@@ -12,6 +16,10 @@ def plot_news_data(ds_true, ds_fake, ds_news):
         ds_fake: set of fake news
         ds_news: set composed of both true and fake news
     """
+
+    # Ensure save_path exists
+    os.makedirs(SAVE_PATH, exist_ok=True)  # Create folder if not exists
+
     # Create a figure and a grid of subplots with 1 row and 3 columns
     fig, axes = plt.subplots(1, 2, figsize=(24, 8))
     fig.suptitle("Most common words", fontsize=36)
@@ -28,7 +36,10 @@ def plot_news_data(ds_true, ds_fake, ds_news):
         " ".join(ds_news[ds_news.label == 1].filtered_string))
     axes[1].imshow(wc, interpolation='bilinear')
 
+    # Display and save the plots
+    plt.savefig(os.path.join(SAVE_PATH, 'most_common_words.png'))
     plt.show()
+    plt.close(fig)
 
     # Create a figure and a grid of subplots with 1 row and 3 columns
     fig, axes = plt.subplots(1, 3, figsize=(24, 8))
@@ -46,13 +57,20 @@ def plot_news_data(ds_true, ds_fake, ds_news):
     axes[2].set_title("Subject Count Total")
     sns.countplot(ax=axes[2], x="subject", data=ds_news)
 
-    # Display the plots
+    # Display and save the plots
+    plt.savefig(os.path.join(SAVE_PATH, 'news_subjects.png'))
+
     plt.tight_layout()
     plt.show()
-
+    plt.close(fig)
     # Count-plot of label values
     plt.figure(figsize=(8, 8))
     plt.title("Label Count")
     sns.countplot(x="label", data=ds_news)
+
+    # Display and save the plots
+    plt.savefig(os.path.join(SAVE_PATH, 'label_count.png'))
+
     plt.show()
+    plt.close(fig)
 
