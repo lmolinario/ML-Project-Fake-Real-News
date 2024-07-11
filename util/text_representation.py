@@ -59,8 +59,6 @@ class TFIDFRepresentation(DataRepresentationStrategy):
         return train_tfidf, test_tfidf
 
 
-
-
 # Abstract class for classifier strategies
 class ClassifierStrategy(ABC):
     @abstractmethod
