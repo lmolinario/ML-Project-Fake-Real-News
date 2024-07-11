@@ -3,8 +3,9 @@ import util.logo
 from util.create_db_news import create_db_news as crdb
 from util.import_dataset import import_dataset
 import util.db_analysis as dba
-from util.NewsPlot import plot_news_data
+from util.news_plot import plot_news_data
 import util.text_representation as tr
+import util.classifiers as cl
 
 # Libraries to manage datasets
 import os
@@ -92,10 +93,11 @@ def main():
     data_representation_names = ['Tokenizer', 'Vectorizer', 'TFIDF']
 
     classifiers = [
-        tr.NaiveBayesClassifierStrategy()
+        cl.NaiveBayesClassifierStrategy(),
+        cl.MultiLayerPerceptronNet()
     ]
 
-    classifier_names = ['NaiveBayes']
+    classifier_names = ['NaiveBayes', 'PerceptronNet']
 
 # Execute the main function
 if __name__ == "__main__":
