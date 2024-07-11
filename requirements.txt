@@ -1,3 +1,6 @@
-﻿pandas == 2.2.2
+matplotlib
+seaborn
+wordcloud
+pandas == 2.2.2
 nltk == 3.8.1
 kaggle == 1.6.14
