@@ -4,6 +4,7 @@ from util import import_dataset
 from util.create_db_news import create_db_news as crdb
 from util.import_dataset import import_dataset
 import util.db_analysis as dba
+from util.NewsPlot import plot_news_data
 
 # Libraries to manage datasets
 import os
@@ -74,6 +75,8 @@ def main():
     maxdim, imaxu, mindim, iminu = dba.get_max_min_unique_word_count(ds_news.filtered_unique) #Document with highest and lowest number of unique words
     print(f"Document with max unique words (length {maxdim}): {imaxu}")
     print(f"Document with min unique words (length {mindim}): {iminu}")
+
+    plot_news_data(ds_true, ds_fake, ds_news)
 
 # Execute the main function
 if __name__ == "__main__":
