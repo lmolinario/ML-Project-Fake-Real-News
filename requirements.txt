@@ -1,6 +1,6 @@
-matplotlib
-seaborn
-wordcloud
+matplotlib == 3.9.1
+seaborn == 0.13.2
+wordcloud == 1.9.3
 pandas == 2.2.2
 nltk == 3.8.1
 kaggle == 1.6.14
