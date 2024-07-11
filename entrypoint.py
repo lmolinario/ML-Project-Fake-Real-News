@@ -1,6 +1,5 @@
 # Import necessary modules
 import util.logo
-#from util import import_dataset
 from util.create_db_news import create_db_news as crdb
 from util.import_dataset import import_dataset
 import util.db_analysis as dba
