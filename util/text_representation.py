@@ -1,9 +1,15 @@
 # Importing necessary libraries
 from abc import ABC, abstractmethod
-from sklearn.feature_extraction.text import TfidfVectorizer
+
+#Modules fot texx representation
 import tensorflow as tf
+from sklearn.feature_extraction.text import TfidfVectorizer
 from keras._tf_keras.keras.preprocessing.text import Tokenizer
 from keras.src.utils import pad_sequences
+
+# Modules for Classifier
+from sklearn.naive_bayes import MultinomialNB
+
 
 # Global variables
 NUM_WORDS = 500  # Maximum number of words for tokenization
@@ -65,3 +71,13 @@ class ClassifierStrategy(ABC):
     def predict(self, x_test):
         pass
 
+# Naive Bayes Classifier strategy
+class NaiveBayesClassifierStrategy(ClassifierStrategy):
+    def __init__(self):
+        self.model = MultinomialNB()
+
+    def train(self, x_train, y_train):
+        self.model.fit(x_train, y_train)
+
+    def predict(self, x_test):
+        return self.model.predict(x_test)
