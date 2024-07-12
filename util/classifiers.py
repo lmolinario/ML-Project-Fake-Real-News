@@ -4,6 +4,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 
+# Took inspiration from https://www.kaggle.com/code/dogukantabak/news-true-fake-prediction-99
 # Abstract class for classifier strategies
 class ClassifierStrategy(ABC):
     @abstractmethod
