@@ -1,5 +1,6 @@
 from sklearn.model_selection import KFold
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report, accuracy_score
+import numpy as np
 
 # Global variables
 N_SPLITS = 3  # Number of splits for cross-validation
@@ -33,7 +34,22 @@ class NewsClassificationPipeline():
             self.classifier.train(x_train, y_train)
             y_pred = self.classifier.predict(x_test)
 
+
+            #Evaluation metrics
             print("\nClassification Report:")
             print(classification_report(y_test, y_pred, output_dict=False))
             print("\nConfusion Matrix:")
             print(confusion_matrix(y_test, y_pred))
+
+            report = classification_report(y_test, y_pred, output_dict=True, zero_division=0)
+            average_confusion_matrix[0][0] += confusion_matrix(y_test, y_pred)
+            average_precision[0][0] += report['macro avg']['precision']
+            average_recall[0][0] += report['macro avg']['recall']
+            average_f1_score[0][0] += report['macro avg']['f1-score']
+
+        average_precision /= N_SPLITS
+        average_recall /= N_SPLITS
+        average_f1_score /= N_SPLITS
+        average_confusion_matrix /= N_SPLITS
+
+        return average_precision, average_recall, average_f1_score, average_confusion_matrix
