@@ -6,6 +6,7 @@ import util.db_analysis as dba
 from util.news_plot import plot_news_data
 import util.text_representation as tr
 import util.classifiers as cl
+import util.news_classification_pipeline as cls_pipeline
 
 # Libraries to manage datasets
 import os
@@ -94,10 +95,24 @@ def main():
 
     classifiers = [
         cl.NaiveBayesClassifierStrategy(),
-        cl.MultiLayerPerceptronNet()
+        cl.MultiLayerPerceptronNet(),
+        cl.RandomForestClassifierStrategy()
     ]
 
-    classifier_names = ['NaiveBayes', 'PerceptronNet']
+    classifier_names = ['NaiveBayes', 'PerceptronNet', 'RandomForest']
+
+    for data_rep, data_rep_name in zip(data_representations, data_representation_names):
+        for classifier, classifier_name in zip(classifiers, classifier_names):
+
+            print(f"\n Test results for classifier: {classifier_name} with data representation: {data_rep_name}")
+
+            # Initialize news classificaiton pipeline
+            pipeline = cls_pipeline.NewsClassificationPipeline(classifier, data_rep, ds_news)
+
+            pipeline.train_and_evaluate()
+
+
+
 
 # Execute the main function
 if __name__ == "__main__":

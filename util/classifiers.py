@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 # Abstract class for classifier strategies
 class ClassifierStrategy(ABC):
@@ -28,6 +29,15 @@ class MultiLayerPerceptronNet(ClassifierStrategy):
     def __init__(self):
         self.model = MLPClassifier(hidden_layer_sizes=(512,10), max_iter=1500)
 
+    def train(self, x_train, y_train):
+        self.model.fit(x_train, y_train)
+
+    def predict(self, x_test):
+        return self.model.predict(x_test)
+
+class RandomForestClassifierStrategy(ClassifierStrategy):
+    def __init__(self):
+        self.model = RandomForestClassifier(n_estimators=20, max_depth=10, random_state=42)
     def train(self, x_train, y_train):
         self.model.fit(x_train, y_train)
 
