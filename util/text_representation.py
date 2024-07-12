@@ -11,7 +11,7 @@ from keras.src.utils import pad_sequences
 # Global variables
 NUM_WORDS = 500  # Maximum number of words for tokenization
 PAD_LENGTH = 100  # Length to pad/truncate sequences to
-N_SPLITS = 3  # Number of splits for cross-validation
+
 
 
 # Abstract class for data representation strategies

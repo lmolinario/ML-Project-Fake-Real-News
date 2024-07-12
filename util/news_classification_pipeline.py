@@ -1,6 +1,9 @@
 from sklearn.model_selection import KFold
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report, accuracy_score
 
+# Global variables
+N_SPLITS = 3  # Number of splits for cross-validation
+
 class NewsClassificationPipeline():
     """
     This class implements a pipeline that takes as inputs a classifier and a preprocessed set of news. Given the set of
@@ -19,7 +22,7 @@ class NewsClassificationPipeline():
         return x, y
 
     def perform_kfold_split(self, x, y):
-        return KFold(n_splits=5, random_state=42, shuffle=True).split(x, y)
+        return KFold(n_splits=N_SPLITS, random_state=42, shuffle=True).split(x, y)
     def train_and_evaluate(self):
         splitter = self.perform_kfold_split(self.x, self.y)
         for i, (train_index, test_index) in enumerate(splitter):
