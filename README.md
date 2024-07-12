@@ -41,8 +41,25 @@ The proposed project aims to deepen knowledge of the key concepts and potential 
 Through binary classification the elements of a dataset are divided into two groups, managing to predict which group each element belongs to.
 
 ## Solution Design
-to implement...
+The developed code implements a modular text classification pipeline using the strategy design pattern, allowing data representation and interchangeable classification strategies. The Strategy Design Pattern allows you to define a family of algorithms, encapsulating each one and making them interchangeable without altering the client code.
 
+It includes three methods of data representation:
+1. **`TokenizerRepresentation`**: Convert text to integer sequences using Keras Tokenizer and fixed-length pad sequences.
+2. **`TextVectorizationRepresentation`**: Use TensorFlow's TextVectorization layer to map text into integer sequences and fill them.
+3. **`TFIDFRepresentation`**: Applies TF-IDF vectorization to convert text into numeric features based on document frequency inverse to term frequency.
+Using these methods, you transform text data into numeric formats suitable for machine learning models.
+
+ The script also provides three classification strategies:
+1. **`NaiveBayesClassifier`**: Implements Naive Bayes for binary classification,such as text classification tasks.
+2. **`PerceptronNetStrategy`**:  A basic form of neural network, suitable for binary classification tasks.
+3. **`RandomForestClassifier`**: Implements a Random Forest algorithm with multiple decision trees for robust classification.
+
+The performance of the classifiers is evaluated through:
+1. **`Average accuracy`**:Precision is the ratio of actual positive predictions to the total predicted positives. 
+2. **`Average recall`**:Recall is the ratio of true positive predictions to total actual positives. 
+3. **`Average F1 Score`**: The F1 score is the harmonic mean of precision and recall.
+
+The pipeline supports k-fold cross-validation for robust evaluation of model performance.
 
 ## Analysis and conclusion
 to implement...
