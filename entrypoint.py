@@ -102,6 +102,9 @@ def main():
     classifier_names = ['NaiveBayes', 'PerceptronNet', 'RandomForest']
 
     for data_rep, data_rep_name in zip(data_representations, data_representation_names):
+        precisions = []
+        recalls = []
+        f1_scores = []
         for classifier, classifier_name in zip(classifiers, classifier_names):
 
             print(f"\n Test results for classifier: {classifier_name} with data representation: {data_rep_name}")
@@ -109,9 +112,41 @@ def main():
             # Initialize news classificaiton pipeline
             pipeline = cls_pipeline.NewsClassificationPipeline(classifier, data_rep, ds_news)
 
-            pipeline.train_and_evaluate()
+            # Train and evaluate the pipeline
+            average_precision, average_recall, average_f1_score, average_confusion_matrix = pipeline.train_and_evaluate()
 
+            # Store metrics
+            precisions.append(average_precision[0, 0])
+            recalls.append(average_recall[0, 0])
+            f1_scores.append(average_f1_score[0, 0])
 
+        # Store average metrics for this data representation
+        avg_precision.append(precisions)
+        avg_recall.append(recalls)
+        avg_f1_score.append(f1_scores)
+
+    # Print the data being plotted
+    print("Plotting performance metrics for the following classifiers:")
+    print(classifier_names)
+    print("Across the following data representations:")
+    print(data_representation_names)
+
+    print("\nAverage Precision values:")
+    for i, classifier_name in enumerate(classifier_names):
+        precision_values = [avg_precision[j][i] for j in range(len(avg_precision))]
+        print(f"{classifier_name}: {precision_values}")
+
+    print("\nAverage Recall values:")
+    for i, classifier_name in enumerate(classifier_names):
+        recall_values = [avg_recall[j][i] for j in range(len(avg_recall))]
+        print(f"{classifier_name}: {recall_values}")
+
+    print("\nAverage F1-score values:")
+    for i, classifier_name in enumerate(classifier_names):
+        f1_values = [avg_f1_score[j][i] for j in range(len(avg_f1_score))]
+        print(f"{classifier_name}: {f1_values}")
+
+    plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
 
 
 # Execute the main function
