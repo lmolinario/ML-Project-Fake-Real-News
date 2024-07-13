@@ -24,8 +24,19 @@ class NewsClassificationPipeline():
 
     def perform_kfold_split(self, x, y):
         return KFold(n_splits=N_SPLITS, random_state=42, shuffle=True).split(x, y)
+
+    # Initialize metrics storage
+    def initialize_metrics_storage(self, num_classifiers, num_representations):
+        average_precision = np.zeros(shape=(num_classifiers, num_representations))
+        average_recall = np.zeros(shape=(num_classifiers, num_representations))
+        average_f1_score = np.zeros(shape=(num_classifiers, num_representations))
+        average_confusion_matrix = np.zeros(shape=(num_classifiers, num_representations, 2, 2))
+        return average_precision, average_recall, average_f1_score, average_confusion_matrix
+
     def train_and_evaluate(self):
         splitter = self.perform_kfold_split(self.x, self.y)
+        average_precision, average_recall, average_f1_score, average_confusion_matrix = self.initialize_metrics_storage(
+            1, 1)
         for i, (train_index, test_index) in enumerate(splitter):
             print(f"******************************* SPLIT {i+1} *******************************")
             x_train, x_test = self.data_representation.prepare_data(train=self.x[train_index], test=self.x[test_index])
@@ -42,6 +53,7 @@ class NewsClassificationPipeline():
             print(confusion_matrix(y_test, y_pred))
 
             report = classification_report(y_test, y_pred, output_dict=True, zero_division=0)
+
             average_confusion_matrix[0][0] += confusion_matrix(y_test, y_pred)
             average_precision[0][0] += report['macro avg']['precision']
             average_recall[0][0] += report['macro avg']['recall']
