@@ -150,7 +150,11 @@ def main():
         print(f"{classifier_name}: {f1_values}")
 
     plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
-
+    
+    best_classifiers = pipeline.determine_best_classifier(classifier_names, data_representation_names, avg_f1_score)
+    print("\nThe best classifier for each data representation based on the highest average F1-score is:")
+    for data_representation, best_classifier in best_classifiers.items():
+        print(f"{data_representation}: {best_classifier}")
 
 # Execute the main function
 if __name__ == "__main__":

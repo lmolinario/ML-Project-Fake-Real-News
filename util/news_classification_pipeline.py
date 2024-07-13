@@ -65,3 +65,16 @@ class NewsClassificationPipeline():
         average_confusion_matrix /= N_SPLITS
 
         return average_precision, average_recall, average_f1_score, average_confusion_matrix
+    
+    def determine_best_classifier(classifier_names, data_representation_names, average_f1_score):
+        best_classifiers = {}
+        for r_idx, data_rep_name in enumerate(data_representation_names):
+            best_classifier = None
+            highest_avg_f1 = 0
+            for c_idx, classifier_name in enumerate(classifier_names):
+                avg_f1 = average_f1_score[r_idx][c_idx]
+                if avg_f1 > highest_avg_f1:
+                    highest_avg_f1 = avg_f1
+                    best_classifier = classifier_name
+            best_classifiers[data_rep_name] = best_classifier
+        return best_classifiers
