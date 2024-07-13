@@ -82,7 +82,7 @@ def main():
     print(f"Document with min unique words (length {mindim}): {iminu}")
 
     # Plot the dataset information
-    plot_news_data(ds_true, ds_fake, ds_news)
+    #plot_news_data(ds_true, ds_fake, ds_news)
 
     # Initialize the data representations and classifiers
     data_representations = [
@@ -95,12 +95,15 @@ def main():
 
     classifiers = [
         cl.NaiveBayesClassifierStrategy(),
-        cl.MultiLayerPerceptronNet(),
+        cl.MultiLayerPerceptronNetStrategy(),
         cl.RandomForestClassifierStrategy()
     ]
 
     classifier_names = ['NaiveBayes', 'PerceptronNet', 'RandomForest']
 
+    avg_precision=[]
+    avg_recall=[]
+    avg_f1_score=[]
     for data_rep, data_rep_name in zip(data_representations, data_representation_names):
         precisions = []
         recalls = []
@@ -146,7 +149,7 @@ def main():
         f1_values = [avg_f1_score[j][i] for j in range(len(avg_f1_score))]
         print(f"{classifier_name}: {f1_values}")
 
-    plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
+    #plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
 
 
 # Execute the main function

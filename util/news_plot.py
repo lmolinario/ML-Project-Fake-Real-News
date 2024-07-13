@@ -20,7 +20,7 @@ def plot_news_data(ds_true, ds_fake, ds_news):
     """
 
     # Ensure save_path exists
-    os.makedirs(SAVE_PATH, exist_ok=True)  # Create folder if not exists
+    os.makedirs(DB_PATH, exist_ok=True)  # Create folder if not exists
 
     # Create a figure and a grid of subplots with 1 row and 3 columns
     fig, axes = plt.subplots(1, 2, figsize=(24, 8))
@@ -39,7 +39,7 @@ def plot_news_data(ds_true, ds_fake, ds_news):
     axes[1].imshow(wc, interpolation='bilinear')
 
     # Display and save the plots
-    plt.savefig(os.path.join(SAVE_PATH, 'most_common_words.png'))
+    plt.savefig(os.path.join(DB_PATH, 'most_common_words.png'))
     plt.show()
     plt.close(fig)
 
@@ -60,7 +60,7 @@ def plot_news_data(ds_true, ds_fake, ds_news):
     sns.countplot(ax=axes[2], x="subject", data=ds_news)
 
     # Display and save the plots
-    plt.savefig(os.path.join(SAVE_PATH, 'news_subjects.png'))
+    plt.savefig(os.path.join(DB_PATH, 'news_subjects.png'))
 
     plt.tight_layout()
     plt.show()
@@ -71,7 +71,7 @@ def plot_news_data(ds_true, ds_fake, ds_news):
     sns.countplot(x="label", data=ds_news)
 
     # Display and save the plots
-    plt.savefig(os.path.join(SAVE_PATH, 'label_count.png'))
+    plt.savefig(os.path.join(DB_PATH, 'label_count.png'))
 
     plt.show()
     plt.close(fig)
@@ -111,7 +111,7 @@ def plot_performance_evaluation(classifier_names,data_representation_names,avg_p
     plt.legend()
 
     filename='performance_metrics_plot.png'
-    plot_dir = PERFORMANCE_PATH
+    plot_dir = PLOTS_PATH
 
     os.makedirs(plot_dir, exist_ok=True)  # Create folder if not exists
 
