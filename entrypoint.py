@@ -3,7 +3,7 @@ import util.logo
 from util.create_db_news import create_db_news as crdb
 from util.import_dataset import import_dataset
 import util.db_analysis as dba
-from util.news_plot import plot_news_data
+from util.news_plot import plot_news_data, plot_performance_evaluation
 import util.text_representation as tr
 import util.classifiers as cl
 import util.news_classification_pipeline as cls_pipeline
@@ -82,7 +82,7 @@ def main():
     print(f"Document with min unique words (length {mindim}): {iminu}")
 
     # Plot the dataset information
-    #plot_news_data(ds_true, ds_fake, ds_news)
+    plot_news_data(ds_true, ds_fake, ds_news)
 
     # Initialize the data representations and classifiers
     data_representations = [
@@ -149,7 +149,7 @@ def main():
         f1_values = [avg_f1_score[j][i] for j in range(len(avg_f1_score))]
         print(f"{classifier_name}: {f1_values}")
 
-    #plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
+    plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
 
 
 # Execute the main function
