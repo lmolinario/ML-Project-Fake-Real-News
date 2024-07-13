@@ -66,6 +66,7 @@ class NewsClassificationPipeline():
 
         return average_precision, average_recall, average_f1_score, average_confusion_matrix
     
+    @staticmethod
     def determine_best_classifier(classifier_names, data_representation_names, average_f1_score):
         best_classifiers = {}
         for r_idx, data_rep_name in enumerate(data_representation_names):
