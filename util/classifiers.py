@@ -16,7 +16,7 @@ class ClassifierStrategy(ABC):
         pass
 
 # Naive Bayes Classifier strategy
-class NaiveBayesClassifier(ClassifierStrategy):
+class NaiveBayesClassifierStrategy(ClassifierStrategy):
     def __init__(self):
         self.model = MultinomialNB()
 
@@ -26,7 +26,7 @@ class NaiveBayesClassifier(ClassifierStrategy):
     def predict(self, x_test):
         return self.model.predict(x_test)
 
-class MultiLayerPerceptronNet(ClassifierStrategy):
+class MultiLayerPerceptronNetStrategy(ClassifierStrategy):
     def __init__(self):
         self.model = MLPClassifier(hidden_layer_sizes=(512,10), max_iter=1500)
 
@@ -36,7 +36,7 @@ class MultiLayerPerceptronNet(ClassifierStrategy):
     def predict(self, x_test):
         return self.model.predict(x_test)
 
-class RandomForestClassifier(ClassifierStrategy):
+class RandomForestClassifierStrategy(ClassifierStrategy):
     def __init__(self):
         self.model = RandomForestClassifier(n_estimators=20, max_depth=10, random_state=42)
     def train(self, x_train, y_train):
