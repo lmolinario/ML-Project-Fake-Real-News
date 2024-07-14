@@ -3,7 +3,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classifica
 import numpy as np
 
 # Global variables
-N_SPLITS = 3  # Number of splits for cross-validation
+N_SPLITS = 5  # Number of splits for cross-validation
 
 class NewsClassificationPipeline():
     """

@@ -89,7 +89,7 @@ def main():
         tr.TokenizerRepresentation(),
         tr.TextVectorizationRepresentation(),
         tr.TFIDFRepresentation()
-        ]
+    ]
 
     data_representation_names = ['Tokenizer', 'Vectorizer', 'TFIDF']
 
@@ -101,18 +101,19 @@ def main():
 
     classifier_names = ['NaiveBayes', 'PerceptronNet', 'RandomForest']
 
-    avg_precision=[]
-    avg_recall=[]
-    avg_f1_score=[]
+    avg_precision = []
+    avg_recall = []
+    avg_f1_score = []
+
     for data_rep, data_rep_name in zip(data_representations, data_representation_names):
         precisions = []
         recalls = []
         f1_scores = []
+
         for classifier, classifier_name in zip(classifiers, classifier_names):
+            print(f"\nTest results for classifier: {classifier_name} with data representation: {data_rep_name}")
 
-            print(f"\n Test results for classifier: {classifier_name} with data representation: {data_rep_name}")
-
-            # Initialize news classificaiton pipeline
+            # Initialize news classification pipeline
             pipeline = cls_pipeline.NewsClassificationPipeline(classifier, data_rep, ds_news)
 
             # Train and evaluate the pipeline
@@ -149,12 +150,13 @@ def main():
         f1_values = [avg_f1_score[j][i] for j in range(len(avg_f1_score))]
         print(f"{classifier_name}: {f1_values}")
 
-    plot_performance_evaluation(classifier_names,data_representation_names,avg_precision,avg_recall,avg_f1_score)
-    
+    plot_performance_evaluation(classifier_names, data_representation_names, avg_precision, avg_recall, avg_f1_score)
+
     best_classifiers = pipeline.determine_best_classifier(classifier_names, data_representation_names, avg_f1_score)
     print("\nThe best classifier for each data representation based on the highest average F1-score is:")
     for data_representation, best_classifier in best_classifiers.items():
         print(f"{data_representation}: {best_classifier}")
+
 
 # Execute the main function
 if __name__ == "__main__":
